@@ -1,2 +1,2 @@
-# megascops
-Sistema de Gestão de Eventos
+# Megascops
+Event Management System
