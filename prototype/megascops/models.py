@@ -1,3 +1,5 @@
+from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
@@ -25,14 +27,13 @@ class User(models.Model):
     id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
-    email = models.CharField(max_length=255)
+    email = models.EmailField(unique=True)
     password = models.CharField(max_length=255)
     date_of_birth = models.DateField()
     gender = models.CharField(max_length=1)
     status = models.CharField(max_length=255)
     role = models.CharField(max_length=255)
     registration_date = models.DateTimeField(auto_now_add=True)
-
 
 class Submission(models.Model):
     id = models.AutoField(primary_key=True)

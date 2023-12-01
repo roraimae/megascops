@@ -27,6 +27,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 SOCIAL_AUTH_PIPELINE = (
@@ -42,8 +43,7 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.user.user_details',
 )
 
-LOGIN_REDIRECT_URL = '/home/'
-
+LOGIN_REDIRECT_URL = 'home'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'megascops',
     'social_django',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -101,7 +102,7 @@ WSGI_APPLICATION = 'prototype.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'megacorpsPrototype',
+        'NAME': 'megascopsPrototype',
         'USER': 'postgres',
         'PASSWORD': '28v12s01b',
         'HOST': 'localhost',

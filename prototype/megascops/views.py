@@ -1,8 +1,12 @@
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.utils.translation import activate
+from rest_framework import viewsets
 
 from .forms import UserRegistrationForm
+from .models import User
+from .serializers import UserSerializer
 
 
 def home(request):
@@ -31,7 +35,6 @@ def registration_view(request):
         oauth_info = request.session.get('oauth_info')
 
         if oauth_info:
-            print(oauth_info)
             form = UserRegistrationForm(initial=oauth_info)
             # Limpa as informações do OAuth da sessão para que não sejam usadas novamente
             request.session.pop('oauth_info', None)
@@ -39,3 +42,8 @@ def registration_view(request):
             form = UserRegistrationForm()
 
     return render(request, 'register.html', {'form': form})
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
